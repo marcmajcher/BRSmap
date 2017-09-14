@@ -55,7 +55,7 @@ gulp.task('sass', () =>
   }).on('error', sass.logError))
   .pipe(sourcemaps.write())
   .pipe(autoprefixer())
-  .pipe(gulp.dest('app/static/css'))
+  .pipe(gulp.dest('public/css'))
 );
 
 gulp.task('scripts', () => {
