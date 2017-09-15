@@ -28,7 +28,7 @@ function hex_scale(a, k) {
   return Hex(a.q * k, a.r * k, a.s * k);
 }
 
-var hex_directions = [Hex(1, 0, -1), Hex(1, -1, 0), Hex(0, -1, 1), Hex(-1, 0, 1), Hex(-1, 1, 0), Hex(0, 1, -1)];
+let hex_directions = [Hex(1, 0, -1), Hex(1, -1, 0), Hex(0, -1, 1), Hex(-1, 0, 1), Hex(-1, 1, 0), Hex(0, 1, -1)];
 
 function hex_direction(direction) {
   return hex_directions[direction];
@@ -38,7 +38,7 @@ function hex_neighbor(hex, direction) {
   return hex_add(hex, hex_direction(direction));
 }
 
-var hex_diagonals = [Hex(2, -1, -1), Hex(1, -2, 1), Hex(-1, -1, 2), Hex(-2, 1, 1), Hex(-1, 2, -1), Hex(1, 1, -2)];
+let hex_diagonals = [Hex(2, -1, -1), Hex(1, -2, 1), Hex(-1, -1, 2), Hex(-2, 1, 1), Hex(-1, 2, -1), Hex(1, 1, -2)];
 
 function hex_diagonal_neighbor(hex, direction) {
   return hex_add(hex, hex_diagonals[direction]);
@@ -53,12 +53,12 @@ function hex_distance(a, b) {
 }
 
 function hex_round(h) {
-  var q = Math.trunc(Math.round(h.q));
-  var r = Math.trunc(Math.round(h.r));
-  var s = Math.trunc(Math.round(h.s));
-  var q_diff = Math.abs(q - h.q);
-  var r_diff = Math.abs(r - h.r);
-  var s_diff = Math.abs(s - h.s);
+  let q = Math.trunc(Math.round(h.q));
+  let r = Math.trunc(Math.round(h.r));
+  let s = Math.trunc(Math.round(h.s));
+  let q_diff = Math.abs(q - h.q);
+  let r_diff = Math.abs(r - h.r);
+  let s_diff = Math.abs(s - h.s);
   if (q_diff > r_diff && q_diff > s_diff) {
     q = -r - s;
   }
@@ -77,12 +77,12 @@ function hex_lerp(a, b, t) {
 }
 
 function hex_linedraw(a, b) {
-  var N = hex_distance(a, b);
-  var a_nudge = Hex(a.q + 0.000001, a.r + 0.000001, a.s - 0.000002);
-  var b_nudge = Hex(b.q + 0.000001, b.r + 0.000001, b.s - 0.000002);
-  var results = [];
-  var step = 1.0 / Math.max(N, 1);
-  for (var i = 0; i <= N; i++) {
+  let N = hex_distance(a, b);
+  let a_nudge = Hex(a.q + 0.000001, a.r + 0.000001, a.s - 0.000002);
+  let b_nudge = Hex(b.q + 0.000001, b.r + 0.000001, b.s - 0.000002);
+  let results = [];
+  let step = 1.0 / Math.max(N, 1);
+  for (let i = 0; i <= N; i++) {
     results.push(hex_round(hex_lerp(a_nudge, b_nudge, step * i)));
   }
   return results;
@@ -95,32 +95,32 @@ function OffsetCoord(col, row) {
   };
 }
 
-var EVEN = 1;
-var ODD = -1;
+let EVEN = 1;
+let ODD = -1;
 
 function qoffset_from_cube(offset, h) {
-  var col = h.q;
-  var row = h.r + Math.trunc((h.q + offset * (h.q & 1)) / 2);
+  let col = h.q;
+  let row = h.r + Math.trunc((h.q + offset * (h.q & 1)) / 2);
   return OffsetCoord(col, row);
 }
 
 function qoffset_to_cube(offset, h) {
-  var q = h.col;
-  var r = h.row - Math.trunc((h.col + offset * (h.col & 1)) / 2);
-  var s = -q - r;
+  let q = h.col;
+  let r = h.row - Math.trunc((h.col + offset * (h.col & 1)) / 2);
+  let s = -q - r;
   return Hex(q, r, s);
 }
 
 function roffset_from_cube(offset, h) {
-  var col = h.q + Math.trunc((h.r + offset * (h.r & 1)) / 2);
-  var row = h.r;
+  let col = h.q + Math.trunc((h.r + offset * (h.r & 1)) / 2);
+  let row = h.r;
   return OffsetCoord(col, row);
 }
 
 function roffset_to_cube(offset, h) {
-  var q = h.col - Math.trunc((h.row + offset * (h.row & 1)) / 2);
-  var r = h.row;
-  var s = -q - r;
+  let q = h.col - Math.trunc((h.row + offset * (h.row & 1)) / 2);
+  let r = h.row;
+  let s = -q - r;
   return Hex(q, r, s);
 }
 
@@ -146,40 +146,40 @@ function Layout(orientation, size, origin) {
   };
 }
 
-var layout_pointy = Orientation(Math.sqrt(3.0), Math.sqrt(3.0) / 2.0, 0.0, 3.0 / 2.0, Math.sqrt(3.0) / 3.0, -1.0 / 3.0, 0.0, 2.0 / 3.0, 0.5);
-var layout_flat = Orientation(3.0 / 2.0, 0.0, Math.sqrt(3.0) / 2.0, Math.sqrt(3.0), 2.0 / 3.0, 0.0, -1.0 / 3.0, Math.sqrt(3.0) / 3.0, 0.0);
+let layout_pointy = Orientation(Math.sqrt(3.0), Math.sqrt(3.0) / 2.0, 0.0, 3.0 / 2.0, Math.sqrt(3.0) / 3.0, -1.0 / 3.0, 0.0, 2.0 / 3.0, 0.5);
+let layout_flat = Orientation(3.0 / 2.0, 0.0, Math.sqrt(3.0) / 2.0, Math.sqrt(3.0), 2.0 / 3.0, 0.0, -1.0 / 3.0, Math.sqrt(3.0) / 3.0, 0.0);
 
 function hex_to_pixel(layout, h) {
-  var M = layout.orientation;
-  var size = layout.size;
-  var origin = layout.origin;
-  var x = (M.f0 * h.q + M.f1 * h.r) * size.x;
-  var y = (M.f2 * h.q + M.f3 * h.r) * size.y;
+  let M = layout.orientation;
+  let size = layout.size;
+  let origin = layout.origin;
+  let x = (M.f0 * h.q + M.f1 * h.r) * size.x;
+  let y = (M.f2 * h.q + M.f3 * h.r) * size.y;
   return Point(x + origin.x, y + origin.y);
 }
 
 function pixel_to_hex(layout, p) {
-  var M = layout.orientation;
-  var size = layout.size;
-  var origin = layout.origin;
-  var pt = Point((p.x - origin.x) / size.x, (p.y - origin.y) / size.y);
-  var q = M.b0 * pt.x + M.b1 * pt.y;
-  var r = M.b2 * pt.x + M.b3 * pt.y;
+  let M = layout.orientation;
+  let size = layout.size;
+  let origin = layout.origin;
+  let pt = Point((p.x - origin.x) / size.x, (p.y - origin.y) / size.y);
+  let q = M.b0 * pt.x + M.b1 * pt.y;
+  let r = M.b2 * pt.x + M.b3 * pt.y;
   return Hex(q, r, -q - r);
 }
 
 function hex_corner_offset(layout, corner) {
-  var M = layout.orientation;
-  var size = layout.size;
-  var angle = 2.0 * Math.PI * (M.start_angle - corner) / 6;
+  let M = layout.orientation;
+  let size = layout.size;
+  let angle = 2.0 * Math.PI * (M.start_angle - corner) / 6;
   return Point(size.x * Math.cos(angle), size.y * Math.sin(angle));
 }
 
 function polygon_corners(layout, h) {
-  var corners = [];
-  var center = hex_to_pixel(layout, h);
-  for (var i = 0; i < 6; i++) {
-    var offset = hex_corner_offset(layout, i);
+  let corners = [];
+  let center = hex_to_pixel(layout, h);
+  for (let i = 0; i < 6; i++) {
+    let offset = hex_corner_offset(layout, i);
     corners.push(Point(center.x + offset.x, center.y + offset.y));
   }
   return corners;
@@ -211,7 +211,7 @@ function equal_int(name, a, b) {
 
 function equal_hex_array(name, a, b) {
   equal_int(name, a.length, b.length);
-  for (var i = 0; i < a.length; i++) {
+  for (let i = 0; i < a.length; i++) {
     equal_hex(name, a[i], b[i]);
   }
 }
@@ -238,9 +238,9 @@ function test_hex_distance() {
 }
 
 function test_hex_round() {
-  var a = Hex(0, 0, 0);
-  var b = Hex(1, -1, 0);
-  var c = Hex(0, -1, 1);
+  let a = Hex(0, 0, 0);
+  let b = Hex(1, -1, 0);
+  let c = Hex(0, -1, 1);
   equal_hex("hex_round 1", Hex(5, -10, 5), hex_round(hex_lerp(Hex(0, 0, 0), Hex(10, -20, 10), 0.5)));
   equal_hex("hex_round 2", hex_round(a), hex_round(hex_lerp(a, b, 0.499)));
   equal_hex("hex_round 3", hex_round(b), hex_round(hex_lerp(a, b, 0.501)));
@@ -253,16 +253,16 @@ function test_hex_linedraw() {
 }
 
 function test_layout() {
-  var h = Hex(3, 4, -7);
-  var flat = Layout(layout_flat, Point(10, 15), Point(35, 71));
+  let h = Hex(3, 4, -7);
+  let flat = Layout(layout_flat, Point(10, 15), Point(35, 71));
   equal_hex("layout", h, hex_round(pixel_to_hex(flat, hex_to_pixel(flat, h))));
-  var pointy = Layout(layout_pointy, Point(10, 15), Point(35, 71));
+  let pointy = Layout(layout_pointy, Point(10, 15), Point(35, 71));
   equal_hex("layout", h, hex_round(pixel_to_hex(pointy, hex_to_pixel(pointy, h))));
 }
 
 function test_conversion_roundtrip() {
-  var a = Hex(3, 4, -7);
-  var b = OffsetCoord(1, -3);
+  let a = Hex(3, 4, -7);
+  let b = OffsetCoord(1, -3);
   equal_hex("conversion_roundtrip even-q", a, qoffset_to_cube(EVEN, qoffset_from_cube(EVEN, a)));
   equal_offsetcoord("conversion_roundtrip even-q", b, qoffset_from_cube(EVEN, qoffset_to_cube(EVEN, b)));
   equal_hex("conversion_roundtrip odd-q", a, qoffset_to_cube(ODD, qoffset_from_cube(ODD, a)));

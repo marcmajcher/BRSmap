@@ -1,15 +1,15 @@
 (() => {
   'use strict';
 
+  function marsMapController() {
+    // const vm = this;
+  }
+
   angular.module('marsmap')
     .component('marsMap', {
       controller: marsMapController,
       templateUrl: '/tmpl/map.html'
     });
-
-  function marsMapController() {
-    // const vm = this;
-  }
 })();
 
 // https://www.redblobgames.com/grids/hexagons/
