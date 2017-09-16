@@ -1,6 +1,10 @@
 <div class="grid-map">
   <div class="hex-row" ng-class-even="'even'" ng-repeat="row in $ctrl.rows">
     <div class="hex skip" ng-repeat="skip in [].constructor(row.offset) track by $index"></div>
-    <div class="hex" ng-repeat="hex in row.hexes"></div>
+    <div class="hex" ng-repeat="hex in row.hexes">
+      {{hex.id}}
+      <!--<div>{{hex.resources.join('/')}}</div>
+      <div>{{hex.colony}}</div> -->
+    </div>
   </div>
 </div>
