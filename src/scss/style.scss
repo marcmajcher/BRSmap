@@ -1,68 +1,70 @@
-div {
-  color: white;
-}
-
-.hex:before {
-  content: " ";
-  width: 0;
-  height: 0;
-  float: left;
-  border-right: 30px solid #943;
-  border-top: 52px solid transparent;
-  border-bottom: 52px solid transparent;
-  position: absolute;
-  left: -30px;
-}
-
-.hex {
-  float: left;
-  width: 60px;
-  height: 104px;
-  background-color: #943;
-  position: relative;
-  margin-left: 60px;
-  margin-right: 60px;
-  margin-top: -53px;
-
-  &:hover {
-    background-color: #960;
-  }
-}
-
-.hex:after {
-  content: "";
-  float: left;
-  border-left: 30px solid #943;
-  border-top: 52px solid transparent;
-  border-bottom: 52px solid transparent;
-  position: absolute;
-  width: 0;
-  right: -30px;
-}
-
-.hex:hover:after {
-  border-left: 30px solid #960;
-}
-
-.hex:hover:before {
-  border-right: 30px solid #960;
-}
-
-.hex-row {
-  clear: left;
-  position: relative;
-  height: 53px;
-}
-
-.skip {
-  visibility: hidden;
-}
-
-.even {
-  margin-left: 90px;
-}
+$hex-color: #943;
+$hover-color: #960;
+$text-color: #fff;
 
 .grid-map {
   margin-left: 40px;
   margin-top: 60px;
+
+  .hex-row {
+    clear: left;
+    height: 53px;
+    position: relative;
+
+    .hex {
+      background-color: $hex-color;
+      color: $text-color;
+      float: left;
+      position: relative;
+      height: 104px;
+      width: 60px;
+      margin-left: 60px;
+      margin-right: 60px;
+      margin-top: -53px;
+
+      &:hover {
+        background-color: $hover-color;
+      }
+    }
+
+    .hex:before {
+      content: " ";
+      height: 0;
+      width: 0;
+      float: left;
+      position: absolute;
+      left: -30px;
+      border-right: 30px solid $hex-color;
+      border-top: 52px solid transparent;
+      border-bottom: 52px solid transparent;
+    }
+
+    .hex:hover:before {
+      border-right: 30px solid $hover-color;
+    }
+
+    .hex:after {
+      content: "";
+      height: 0;
+      width: 0;
+      float: left;
+      position: absolute;
+      right: -30px;
+      border-left: 30px solid $hex-color;
+      border-top: 52px solid transparent;
+      border-bottom: 52px solid transparent;
+    }
+
+    .hex:hover:after {
+      border-left: 30px solid $hover-color;
+    }
+
+    .skip {
+      visibility: hidden;
+    }
+  }
+
+  .even {
+    margin-left: 90px;
+  }
 }

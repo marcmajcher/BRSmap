@@ -1,13 +1,15 @@
 (() => {
   'use strict';
 
-  function marsMapController() {
-    // const vm = this;
+  function marsMapController(HexDataService) {
+    const ctrl = this;
+
+    ctrl.rows = HexDataService.rows;
   }
 
   angular.module('marsmap')
     .component('marsMap', {
-      controller: marsMapController,
+      controller: ['HexDataService', marsMapController],
       templateUrl: '/tmpl/map.html'
     });
 })();

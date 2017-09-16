@@ -10,12 +10,14 @@
 (function () {
   'use strict';
 
-  function marsMapController() {
-    // const vm = this;
+  function marsMapController(HexDataService) {
+    var ctrl = this;
+
+    ctrl.rows = HexDataService.rows;
   }
 
   angular.module('marsmap').component('marsMap', {
-    controller: marsMapController,
+    controller: ['HexDataService', marsMapController],
     templateUrl: '/tmpl/map.html'
   });
 })();
@@ -24,14 +26,65 @@
 // https://www.redblobgames.com/grids/hexagons/implementation.html
 'use strict';
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 (function () {
   'use strict';
 
-  var HexService = function HexService() {
-    _classCallCheck(this, HexService);
-  };
+  function HexDataService() {
+    return {
+      rows: [{
+        offset: 2,
+        hexes: [{}]
+      }, {
+        offset: 1,
+        hexes: [{}, {}]
+      }, {
+        offset: 1,
+        hexes: [{}, {}, {}]
+      }, {
+        offset: 0,
+        hexes: [{}, {}, {}, {}]
+      }, {
+        offset: 0,
+        hexes: [{}, {}, {}, {}, {}]
+      }, {
+        offset: 0,
+        hexes: [{}, {}, {}, {}]
+      }, {
+        offset: 0,
+        hexes: [{}, {}, {}, {}, {}]
+      }, {
+        offset: 0,
+        hexes: [{}, {}, {}, {}]
+      }, {
+        offset: 0,
+        hexes: [{}, {}, {}, {}, {}]
+      }, {
+        offset: 0,
+        hexes: [{}, {}, {}, {}]
+      }, {
+        offset: 0,
+        hexes: [{}, {}, {}, {}, {}]
+      }, {
+        offset: 0,
+        hexes: [{}, {}, {}, {}]
+      }, {
+        offset: 0,
+        hexes: [{}, {}, {}, {}, {}]
+      }, {
+        offset: 0,
+        hexes: [{}, {}, {}, {}]
+      }, {
+        offset: 1,
+        hexes: [{}, {}, {}]
+      }, {
+        offset: 1,
+        hexes: [{}, {}]
+      }, {
+        offset: 2,
+        hexes: [{}]
+      }]
+    };
+  }
 
-  angular.module('marsmap').service('HexService', HexService);
+  angular.module('marsmap').service('HexDataService', HexDataService);
 })();
