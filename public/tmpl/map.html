@@ -3,9 +3,9 @@
     <div class="hex skip" ng-repeat="skip in [].constructor(row.offset) track by $index"></div>
     <div class="hex" ng-repeat="hex in row.hexes">
       <div class="hexcontent">
-        {{hex.id}}
-        <div>{{hex.resources.join('/')}}</div>
-        <div>{{hex.colony}}</div>
+        <div class="hexid">{{hex.id}}</div>
+        <div class="hexcolony colony-{{hex.colony}}" ng-if="hex.colony">{{hex.colony}}</div>
+        <div ng-repeat="resource in hex.resources" class="hexresource resource-{{resource}}">{{resource}}</div>
       </div>
     </div>
   </div>

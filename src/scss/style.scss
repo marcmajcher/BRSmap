@@ -1,7 +1,21 @@
 $hex-color: #943;
 $hover-color: #960;
-$text-color: #fff;
 $background-color: #000;
+$border: #999;
+$eris: #fc0;
+$morrigan: #c00;
+$athena: #f90;
+$shiva: #33c;
+$minerva: #090;
+$victoria: #c0c;
+$ares: #000;
+$light-text: #fff;
+$dark-text: #333;
+$resource-w: #99f;
+$resource-o: #0c0;
+$resource-m: #c0c;
+$resource-pw: #ff0;
+$resource-ps: #ff0;
 
 body {
   background-color: $background-color;
@@ -18,7 +32,7 @@ body {
 
     .hex {
       background-color: $hex-color;
-      color: $text-color;
+      color: $light-text;
       float: left;
       position: relative;
       height: 104px;
@@ -33,6 +47,82 @@ body {
 
       .hexcontent {
         position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+
+        .hexid {
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+
+        .hexcolony {
+          width: 100%;
+          text-align: center;
+          // border: 2px solid $border;
+        }
+
+        .colony-Eris {
+          border: 2px solid $eris;
+        }
+
+        .colony-Minerva {
+          border: 2px solid $minerva;
+        }
+
+        .colony-Athena {
+          border: 2px solid $athena;
+        }
+
+        .colony-Morrigan {
+          border: 2px solid $morrigan;
+        }
+
+        .colony-Victoria {
+          border: 2px solid $victoria;
+        }
+
+        .colony-Shiva {
+          border: 2px solid $shiva;
+        }
+
+        .colony-Ares {
+          border: 2px solid $ares;
+        }
+
+        .hexresource {
+          font-weight: bold;
+          align-items: center;
+          justify-content: center;
+          display: flex;
+          width: 30px;
+          height: 30px;
+          padding: 0 5px;
+          color: $dark-text;
+          border-radius: 15px;
+          border: 1px solid $background-color;
+        }
+
+        .resource-W {
+          background-color: $resource-w;
+        }
+
+        .resource-O {
+          background-color: $resource-o;
+        }
+
+        .resource-M {
+          background-color: $resource-m;
+        }
+
+        .resource-Ps,
+        .resource-Pw {
+          background-color: $resource-ps;
+        }
       }
     }
 
