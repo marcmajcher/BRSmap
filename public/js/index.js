@@ -10,12 +10,14 @@
 (function () {
   'use strict';
 
-  function infoPanelController() {
+  function infoPanelController(InfoPanelService) {
     var ctrl = this;
+
+    ctrl.info = InfoPanelService;
   }
 
   angular.module('marsmap').component('infoPanel', {
-    controller: infoPanelController,
+    controller: ['InfoPanelService', infoPanelController],
     templateUrl: '/tmpl/infopanel.html'
   });
 })();
@@ -24,14 +26,18 @@
 (function () {
   'use strict';
 
-  function marsMapController(HexDataService) {
+  function marsMapController(HexDataService, InfoPanelService) {
     var ctrl = this;
 
     ctrl.rows = HexDataService.rows;
+
+    ctrl.onClick = function (hex) {
+      InfoPanelService.setHex(hex);
+    };
   }
 
   angular.module('marsmap').component('marsMap', {
-    controller: ['HexDataService', marsMapController],
+    controller: ['HexDataService', 'InfoPanelService', marsMapController],
     templateUrl: '/tmpl/map.html'
   });
 })();
@@ -349,4 +355,20 @@
   }
 
   angular.module('marsmap').service('HexDataService', HexDataService);
+})();
+'use strict';
+
+(function () {
+  'use strict';
+
+  function InfoPanelService() {
+    return {
+      setHex: function setHex(hex) {
+        this.hex = hex;
+      },
+      hex: undefined
+    };
+  }
+
+  angular.module('marsmap').service('InfoPanelService', InfoPanelService);
 })();

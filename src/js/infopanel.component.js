@@ -1,14 +1,15 @@
 (() => {
   'use strict';
 
-  function infoPanelController() {
+  function infoPanelController(InfoPanelService) {
     const ctrl = this;
 
+    ctrl.info = InfoPanelService;
   }
 
   angular.module('marsmap')
     .component('infoPanel', {
-      controller: infoPanelController,
+      controller: ['InfoPanelService', infoPanelController],
       templateUrl: '/tmpl/infopanel.html'
     });
 })();

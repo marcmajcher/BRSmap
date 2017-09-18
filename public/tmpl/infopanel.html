@@ -1,1 +1,7 @@
-<div class="info-panel"> </div>
+<div class="info-panel" ng-show="$ctrl.info.hex">
+  <div class="hexid">ID: {{$ctrl.info.hex.id}}</div>
+  <div class="info">
+    <div ng-if="$ctrl.info.hex.colony">{{$ctrl.info.hex.colony}}</div>
+    <div ng-repeat="res in $ctrl.info.hex.resources">{{res}}</div>
+  </div>
+</div>
