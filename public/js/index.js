@@ -10,6 +10,20 @@
 (function () {
   'use strict';
 
+  function infoPanelController() {
+    var ctrl = this;
+  }
+
+  angular.module('marsmap').component('infoPanel', {
+    controller: infoPanelController,
+    templateUrl: '/tmpl/infopanel.html'
+  });
+})();
+'use strict';
+
+(function () {
+  'use strict';
+
   function marsMapController(HexDataService) {
     var ctrl = this;
 
@@ -21,9 +35,6 @@
     templateUrl: '/tmpl/map.html'
   });
 })();
-
-// https://www.redblobgames.com/grids/hexagons/
-// https://www.redblobgames.com/grids/hexagons/implementation.html
 'use strict';
 
 (function () {
